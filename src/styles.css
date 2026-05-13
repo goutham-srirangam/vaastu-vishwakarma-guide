@@ -73,7 +73,12 @@
   --ring: var(--saffron);
 
   --font-display: "Marcellus", ui-serif, Georgia, serif;
+  --font-script: "Dancing Script", "Marcellus", cursive;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --font-script: var(--font-script);
 }
 
 @layer base {

@@ -37,7 +37,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServicePage() {
-  const { service: s } = Route.useLoaderData();
+  const { service: s } = Route.useLoaderData() as { service: import("@/data/services").ServiceData };
 
   return (
     <>

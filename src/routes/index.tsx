@@ -39,10 +39,14 @@ export const Route = createFileRoute("/")({
 });
 
 const HOME_FAQS = [
-  { q: "How do I apply Vaastu to a home that is already built?", a: "Most existing homes are corrected through layout adjustments, colour and element placement, mirrors, and shastra-based remedies — without major demolition." },
-  { q: "Can Vaastu be applied to an apartment or flat?", a: "Yes. We focus on the entrance, Brahmasthan, kitchen and bedroom usage. Non-structural remedies work very effectively in apartments." },
-  { q: "How do I know my home has Vaastu dosha?", a: "Persistent ill-health, broken sleep, frequent arguments, financial blocks and unusual incidents in one zone are common indicators of Vaastu dosha." },
-  { q: "Where should the kitchen be placed?", a: "The Agneya (south-east) corner is ideal. North-west is the next preferred direction. The cook should face east while cooking wherever possible." },
+  { q: "How do I apply Vaastu to a home that is already built?", a: "Most existing homes are corrected through layout adjustments, colour and element placement, mirrors, yantras and shastra-based remedies — without any major demolition. A Shailyodhar at the Brahmasthan is often the most powerful starting point." },
+  { q: "Can Vaastu be applied to an apartment or flat?", a: "Yes. We focus on energising the entrance and Brahmasthan, fixing seating and bedroom directions, and using non-structural remedies. We do not recommend altering the kitchen or toilet plumbing in a flat — the building's pipelines remain shared, so the effort is rarely worthwhile." },
+  { q: "How do I know my home has Vaastu dosha?", a: "Common signs include disturbed sleep, frequent arguments between family members, recurring health issues, financial blocks and unusual incidents concentrated in one zone of the home." },
+  { q: "Where should the main door be placed?", a: "Auspicious pads on the east wall are Jayant and Indra; on the south wall, Gruhakshat; on the west, Pushpadant and Varun; and on the north, Mukhya Bhallat and Soma. We confirm the right one based on your plot." },
+  { q: "Where should the kitchen and toilet be placed?", a: "The kitchen sits best in the Agneya (south-east) corner. Toilets should avoid Agneya (south-east) and Ishanya (north-east); other corners can be used with proper care." },
+  { q: "Where should the locker or wealth zone go?", a: "Lockers do well placed against the north wall, west wall, south-west or south-east — facing north for the door so it opens towards the wealth direction." },
+  { q: "Which direction should I face while sitting or working?", a: "North and east are most beneficial — for study, work and even while using the washroom. Facing south is generally avoided for long working sessions." },
+  { q: "What are the top three things to check before buying a home?", a: "Sufficient natural sunlight, proper cross-ventilation and a clear, unobstructed Brahmasthan. Also confirm there is no toilet on the south-east (Agneya) corner." },
   { q: "Do you offer remote / online consultation?", a: "Yes. Share your floor plan, directional photographs and a compass reading and we can guide you anywhere in the world." },
   { q: "Will Vaastu conflict with my architect's design?", a: "Not at all. We collaborate with your architect — most modern designs can be made fully Vaastu-compliant with thoughtful adjustments." },
 ];

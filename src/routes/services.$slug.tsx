@@ -62,9 +62,10 @@ function ServicePage() {
           <div>
             <SectionHeading eyebrow="Overview" title="What this service is" />
             <p className="mt-6 text-muted-foreground">{s.intro}</p>
+            {s.intro2 && <p className="mt-4 text-muted-foreground">{s.intro2}</p>}
           </div>
           <div>
-            <SectionHeading eyebrow="What we cover" title="Areas of focus" />
+            <SectionHeading eyebrow={s.offerHeading} title="Areas of focus" />
             <ul className="mt-6 space-y-3">
               {s.covers.map((c) => (
                 <li key={c} className="flex gap-3 text-foreground/90">

@@ -73,7 +73,12 @@
   --ring: var(--saffron);
 
   --font-display: "Marcellus", ui-serif, Georgia, serif;
+  --font-script: "Dancing Script", "Marcellus", cursive;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --font-script: var(--font-script);
 }
 
 @layer base {
@@ -96,17 +101,11 @@
     background-clip: text;
     color: transparent;
   }
-  .divider-gold::before,
-  .divider-gold::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background-image: linear-gradient(to right, transparent, var(--gold), transparent);
-  }
-  .divider-gold {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--gold);
-  }
+  .font-script { font-family: var(--font-script); }
 }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+

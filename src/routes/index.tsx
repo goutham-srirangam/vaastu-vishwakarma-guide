@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Compass, Home as HomeIcon, Sparkles, ShieldCheck, Youtube, ArrowRight } from "lucide-react";
-import hero from "@/assets/hero.jpg";
+import { ArrowRight, Youtube, Quote, Calendar } from "lucide-react";
+import founder from "@/assets/founder.jpg";
+import topo from "@/assets/topo-bg.jpg";
 import about from "@/assets/about.jpg";
+import g1 from "@/assets/g1.jpg";
+import g2 from "@/assets/g2.jpg";
+import g3 from "@/assets/g3.jpg";
 import { SERVICES } from "@/data/services";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -35,115 +39,156 @@ export const Route = createFileRoute("/")({
 });
 
 const HOME_FAQS = [
-  { q: "What is Vaastu Shastra?", a: "Vaastu Shastra is an ancient Indian science of architecture that aligns buildings with the five elements and directional energies, supporting health, prosperity and peace." },
-  { q: "Do I need to demolish my house to follow Vaastu?", a: "Almost never. The vast majority of Vaastu corrections are achieved through changes in usage, layout, colours, and shastra-based remedies — not demolition." },
-  { q: "Does Vaastu apply to a rented home or flat?", a: "Yes. We provide non-structural remedies that work beautifully in rented homes, apartments and PG accommodations." },
-  { q: "How long does a Vaastu consultation take?", a: "A standard residential consultation takes 1–2 hours on site, followed by a detailed report within a week." },
-  { q: "Do you offer remote / online consultation?", a: "Yes. With your floor plan, photographs and a directional reading, we can guide you anywhere in the world." },
-  { q: "What is your fee structure?", a: "Fees depend on the size and type of property. Please reach out via the contact page for a personalised quote." },
-  { q: "Will Vaastu conflict with my architect's design?", a: "We work alongside your architect — most modern designs can be made fully Vaastu-compliant with thoughtful adjustments." },
-  { q: "When is the best time to begin construction?", a: "We help identify auspicious muhurtams for bhumi pooja, foundation laying and griha pravesham based on your horoscope." },
+  { q: "How do I apply Vaastu to a home that is already built?", a: "Most existing homes are corrected through layout adjustments, colour and element placement, mirrors, and shastra-based remedies — without major demolition." },
+  { q: "Can Vaastu be applied to an apartment or flat?", a: "Yes. We focus on the entrance, Brahmasthan, kitchen and bedroom usage. Non-structural remedies work very effectively in apartments." },
+  { q: "How do I know my home has Vaastu dosha?", a: "Persistent ill-health, broken sleep, frequent arguments, financial blocks and unusual incidents in one zone are common indicators of Vaastu dosha." },
+  { q: "Where should the kitchen be placed?", a: "The Agneya (south-east) corner is ideal. North-west is the next preferred direction. The cook should face east while cooking wherever possible." },
+  { q: "Do you offer remote / online consultation?", a: "Yes. Share your floor plan, directional photographs and a compass reading and we can guide you anywhere in the world." },
+  { q: "Will Vaastu conflict with my architect's design?", a: "Not at all. We collaborate with your architect — most modern designs can be made fully Vaastu-compliant with thoughtful adjustments." },
 ];
+
+const STATS = [
+  { k: "1500+", v: "Cases Completed" },
+  { k: "20+", v: "Years in Vaastu Shastra" },
+  { k: "500+", v: "Students Trained" },
+  { k: "2000+", v: "Site Visits" },
+];
+
+const PROCESS = [
+  { n: "1", t: "Consultation", d: "Initial discussion to understand your space, goals and concerns." },
+  { n: "2", t: "Site Visit", d: "On-site or remote evaluation of directions, layout and surroundings." },
+  { n: "3", t: "Plan Analysis", d: "Detailed review of your floor plan against the Vaastu Purusha Mandala." },
+  { n: "4", t: "Remedial Solution", d: "Practical, shastra-based remedies tailored to your home or business." },
+];
+
+const TESTIMONIALS = [
+  { name: "Ramesh K.", role: "Homeowner, Hyderabad", text: "After the consultation our home felt different within weeks. The pooja room placement made a real change in family peace." },
+  { name: "Lakshmi P.", role: "Restaurant Owner, Vijayawada", text: "Footfall improved noticeably after we corrected the cash counter and kitchen direction. Practical, clear guidance throughout." },
+  { name: "Suresh M.", role: "Builder, Vizag", text: "Honest, traditional and respectful of the architect's vision. Our residential project sold faster than we expected." },
+];
+
+const BLOG = [
+  { tag: "Residence", date: "May 02, 2026", title: "What is Vaastu Shastra? A beginner's guide to Indian sacred architecture." },
+  { tag: "Apartment", date: "Apr 18, 2026", title: "How to correct Vaastu dosha in a flat without breaking any walls." },
+  { tag: "Workplace", date: "Mar 27, 2026", title: "Vaastu for your home office: simple changes that improve focus and income." },
+];
+
+const PARTNERS = ["Saanvi Builders", "Sri Krishna Estates", "Annapurna Foods", "Vasudha Realty", "Aravind Hospitals", "Padmaja Constructions", "Kamala Hotels", "Ganga Industries"];
 
 function Index() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <img
-            src={hero}
-            alt="Brass diya on rangoli — symbol of vaastu harmony"
-            className="h-full w-full object-cover"
-            width={1920}
-            height={1080}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/85 via-secondary/60 to-transparent" />
-        </div>
-        <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
-          <div className="max-w-2xl text-secondary-foreground">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-secondary/40 px-3 py-1 text-xs uppercase tracking-[0.25em] text-accent">
-              <span>ॐ</span> Authentic Vaastu Shastra
+      {/* HERO */}
+      <section className="relative isolate overflow-hidden bg-cream">
+        <img
+          src={topo}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
+          width={1920}
+          height={1280}
+        />
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
+          <div>
+            <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              <span className="h-px w-8 bg-primary" /> ॐ Vaastu Shastra
             </p>
-            <h1 className="font-display text-4xl leading-tight md:text-6xl">
-              Ancient Vaastu wisdom <br /> for modern spaces.
+            <h1 className="font-script text-5xl leading-[1.05] text-secondary md:text-7xl">
+              Providing Harmony <br /> And Balance In Life <br /> Through Vaastushastra…
             </h1>
-            <p className="mt-5 max-w-xl text-base text-secondary-foreground/85 md:text-lg">
-              Vishwakarma Telugu Vaastu helps families and businesses align their homes,
-              offices and projects with the timeless principles of Vaastu Shastra — for
-              prosperity, harmony and peace of mind.
+            <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
+              We help families and businesses create spaces that nurture well-being,
+              prosperity and peace — guided by the timeless principles of Vaastu Shastra.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                to="/services"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-lg transition hover:opacity-90"
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition hover:opacity-90"
               >
-                Explore Services <ArrowRight className="h-4 w-4" />
+                Get Consultation <ArrowRight className="h-4 w-4" />
               </Link>
               <a
                 href="https://www.youtube.com/@vishwakarmateluguvastu"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-accent/60 bg-secondary/30 px-5 py-3 text-sm font-medium text-accent backdrop-blur transition hover:bg-secondary/60"
+                className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-cream px-6 py-3 text-sm font-semibold text-secondary transition hover:bg-secondary hover:text-secondary-foreground"
               >
                 <Youtube className="h-4 w-4" /> Watch on YouTube
               </a>
             </div>
           </div>
+          <div className="relative">
+            <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-temple-gradient opacity-10 blur-3xl" />
+            <img
+              src={founder}
+              alt="Vishwakarma Telugu Vaastu — portrait of the poojari"
+              className="mx-auto h-auto w-full max-w-md object-contain md:max-w-lg"
+              width={1024}
+              height={1280}
+            />
+          </div>
         </div>
       </section>
 
-      {/* About */}
-      <section className="mx-auto max-w-7xl px-4 py-20 md:px-8">
-        <div className="grid items-center gap-12 md:grid-cols-2">
+      {/* ABOUT THE FOUNDER */}
+      <section className="bg-background py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 md:px-8">
           <div className="relative">
-            <div className="absolute -left-3 -top-3 h-full w-full rounded-2xl border-2 border-accent/40" />
+            <div className="absolute -bottom-4 -left-4 z-0 hidden h-2/3 w-2/3 rounded-2xl bg-temple-gradient opacity-20 md:block" />
             <img
               src={about}
-              alt="Vaastu poojari portrait"
+              alt="Vaastu workshop and consultation"
               loading="lazy"
               width={1024}
               height={1024}
-              className="relative rounded-2xl object-cover shadow-xl"
+              className="relative z-10 rounded-2xl object-cover shadow-xl"
             />
+            <div className="absolute -right-3 top-6 z-20 hidden rounded-xl bg-primary px-5 py-3 text-primary-foreground shadow-xl md:block">
+              <div className="font-display text-2xl">20+ Years</div>
+              <div className="text-xs uppercase tracking-widest opacity-90">Of Devotion</div>
+            </div>
           </div>
           <div>
-            <SectionHeading
-              eyebrow="About the Poojari"
-              title="A lifelong devotion to Vaastu Shastra"
-              description="Decades of disciplined study and on-site practice — applying the timeless rules of the Vaastu Purusha Mandala to today's homes and businesses."
-            />
-            <p className="mt-6 text-base text-muted-foreground">
-              Vishwakarma Telugu Vaastu is dedicated to keeping authentic Vaastu Shastra
-              alive in everyday life. From plot selection to griha pravesham, every
-              recommendation is rooted in classical scriptures and adapted with care for
-              modern construction, urban plots and contemporary lifestyles.
+            <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              <span className="h-px w-8 bg-primary" /> About The Founder
             </p>
-            <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-              {[
-                { k: "1000+", v: "Consultations" },
-                { k: "20+", v: "Years experience" },
-                { k: "All", v: "South India" },
-              ].map((s) => (
-                <div key={s.v} className="rounded-lg border border-gold/40 bg-card p-4">
-                  <div className="font-display text-2xl text-secondary">{s.k}</div>
-                  <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.v}</div>
-                </div>
-              ))}
-            </div>
+            <h2 className="font-display text-3xl leading-tight text-secondary md:text-4xl">
+              Vaastu Shastra Acharya — <br />
+              <span className="text-primary">Vishwakarma Telugu Vaastu</span>
+            </h2>
+            <p className="mt-5 text-base text-muted-foreground">
+              For over two decades, our practice has been devoted to keeping authentic
+              Vaastu Shastra alive in everyday Telugu households and businesses. From
+              plot selection to griha pravesham, every recommendation is rooted in
+              classical scriptures — adapted with care for modern construction and
+              urban realities.
+            </p>
+            <p className="mt-4 text-base text-muted-foreground">
+              Our work spans Vaastu education, residential, commercial, industrial,
+              farmhouse, restaurant and hospital projects across the Telugu states
+              and beyond, helping each space become peaceful, harmonious and prosperous.
+            </p>
+            <Link
+              to="/services"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground transition hover:opacity-90"
+            >
+              Discover More <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Services */}
+      {/* SERVICES */}
       <section className="bg-muted/40 py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <SectionHeading
-            center
-            eyebrow="Our Services"
-            title="Vaastu for every space you build"
-            description="From a single-room home to a multi-acre factory, every space deserves to be aligned with the energies of nature."
-          />
+          <div className="text-center">
+            <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              <span className="h-px w-8 bg-primary" /> Our Services
+            </p>
+            <h2 className="font-display text-3xl text-secondary md:text-4xl">
+              Vaastu Shastra Is A Finger <br /> Pointing At Reality
+            </h2>
+          </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s) => (
               <ServiceCard key={s.slug} s={{ to: s.to, title: s.title, blurb: s.blurb, image: s.image }} />
@@ -152,51 +197,140 @@ function Index() {
         </div>
       </section>
 
-      {/* Why Vaastu */}
-      <section className="mx-auto max-w-7xl px-4 py-20 md:px-8">
-        <SectionHeading
-          center
-          eyebrow="Why Vaastu"
-          title="Aligning the seen and the unseen"
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-4">
-          {[
-            { icon: HomeIcon, t: "Family harmony", d: "Spaces that nurture relationships and well-being." },
-            { icon: Sparkles, t: "Prosperity", d: "Direction-aligned spaces support growth and abundance." },
-            { icon: ShieldCheck, t: "Peace of mind", d: "Confidence in every major decision about your space." },
-            { icon: Compass, t: "Balanced energy", d: "All five elements working in harmony around you." },
-          ].map(({ icon: Icon, t, d }) => (
-            <div key={t} className="rounded-xl border border-gold/30 bg-card p-6">
-              <div className="grid h-12 w-12 place-items-center rounded-lg bg-temple-gradient text-primary-foreground">
-                <Icon className="h-6 w-6" />
+      {/* HISTORY + STATS */}
+      <section className="relative overflow-hidden bg-secondary py-20 text-secondary-foreground">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 md:px-8">
+          <div>
+            <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+              <span className="h-px w-8 bg-accent" /> Our History
+            </p>
+            <h2 className="font-display text-3xl leading-tight md:text-4xl">
+              Vaastushastra: Architectural Harmony for Prosperous Living
+            </h2>
+            <p className="mt-5 text-secondary-foreground/85">
+              Vaastu Shastra is the ancient Hindu science of architecture. It blends
+              the five elements, eight directions and the cosmic order into the design
+              of a building so that the people who live and work inside it experience
+              health, wealth and peace.
+            </p>
+            <p className="mt-4 text-secondary-foreground/85">
+              Its origins trace back to the Atharvaveda and Sthapatya Veda, refined by
+              sages over millennia. Our work is to bring those time-tested principles
+              into the homes, offices and projects of today.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-5">
+            {STATS.map((s) => (
+              <div
+                key={s.v}
+                className="rounded-2xl border border-accent/30 bg-secondary-foreground/5 p-6 text-center backdrop-blur"
+              >
+                <div className="font-display text-4xl text-accent md:text-5xl">{s.k}</div>
+                <div className="mt-2 text-xs uppercase tracking-[0.2em] text-secondary-foreground/80">
+                  {s.v}
+                </div>
               </div>
-              <h3 className="mt-4 font-display text-xl text-secondary">{t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WORK PROCESS */}
+      <section className="mx-auto max-w-7xl px-4 py-20 md:px-8">
+        <div className="text-center">
+          <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            <span className="h-px w-8 bg-primary" /> Our Work Process
+          </p>
+          <h2 className="font-display text-3xl text-secondary md:text-4xl">
+            A Simple And Effective <br /> Four Step Process
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-6 md:grid-cols-4">
+          {PROCESS.map((p) => (
+            <div
+              key={p.n}
+              className="relative rounded-2xl border border-gold/40 bg-card p-7 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="absolute -top-5 left-1/2 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full bg-temple-gradient font-display text-lg text-primary-foreground shadow-lg">
+                {p.n}
+              </div>
+              <h3 className="mt-3 font-display text-xl text-secondary">{p.t}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{p.d}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* YouTube */}
+      {/* FAQ */}
+      <section className="bg-muted/40 py-20">
+        <div className="mx-auto max-w-4xl px-4 md:px-8">
+          <SectionHeading
+            center
+            eyebrow="Frequently Asked Questions"
+            title="FAQ"
+            description="Quick answers to the questions families and business owners ask us most often. For anything specific to your home or project, please reach out directly."
+          />
+          <div className="mt-10">
+            <FAQList items={HOME_FAQS} />
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="mx-auto max-w-7xl px-4 py-20 md:px-8">
+        <div className="text-center">
+          <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            <span className="h-px w-8 bg-primary" /> Testimonials
+          </p>
+          <h2 className="font-display text-3xl text-secondary md:text-4xl">
+            What People Are Saying <br /> About Our Services
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <figure
+              key={t.name}
+              className="relative flex h-full flex-col rounded-2xl border border-gold/40 bg-card p-7 shadow-sm"
+            >
+              <Quote className="h-8 w-8 text-primary/70" />
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-foreground/85">
+                {t.text}
+              </blockquote>
+              <figcaption className="mt-6 border-t border-gold/30 pt-4">
+                <div className="font-display text-lg text-secondary">{t.name}</div>
+                <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                  {t.role}
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      {/* YOUTUBE */}
       <section className="bg-secondary py-20 text-secondary-foreground">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-2 md:px-8">
           <div>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent">YouTube Channel</p>
-            <h2 className="font-display text-3xl md:text-4xl">Watch Vaastu lessons in Telugu</h2>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+              YouTube Channel
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl">
+              Watch Vaastu lessons in Telugu
+            </h2>
             <p className="mt-4 text-secondary-foreground/85">
-              Hundreds of free videos covering home Vaastu, business Vaastu, plot selection,
-              remedies and live Q&A — directly from our YouTube channel.
+              Hundreds of free videos covering home Vaastu, business Vaastu, plot
+              selection, remedies and live Q&amp;A — directly from our YouTube channel.
             </p>
             <a
               href="https://www.youtube.com/@vishwakarmateluguvastu"
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
             >
               <Youtube className="h-4 w-4" /> Visit @vishwakarmateluguvastu
             </a>
           </div>
-          <div className="aspect-video overflow-hidden rounded-xl border border-accent/30 shadow-2xl">
+          <div className="aspect-video overflow-hidden rounded-2xl border border-accent/30 shadow-2xl">
             <iframe
               className="h-full w-full"
               src="https://www.youtube.com/embed?listType=user_uploads&list=vishwakarmateluguvastu"
@@ -209,30 +343,88 @@ function Index() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="mx-auto max-w-4xl px-4 py-20 md:px-8">
-        <SectionHeading
-          center
-          eyebrow="Questions"
-          title="Frequently asked questions"
-          description="Everything you wanted to ask about working with a Vaastu poojari."
-        />
-        <div className="mt-10">
-          <FAQList items={HOME_FAQS} />
+      {/* BLOG TEASER */}
+      <section className="mx-auto max-w-7xl px-4 py-20 md:px-8">
+        <div className="text-center">
+          <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            <span className="h-px w-8 bg-primary" /> Latest Blog
+          </p>
+          <h2 className="font-display text-3xl text-secondary md:text-4xl">
+            Stories And Insights From <br /> Our Vaastu Practice
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {[g1, g2, g3].map((img, i) => (
+            <article
+              key={i}
+              className="group overflow-hidden rounded-2xl border border-gold/40 bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={img}
+                  alt=""
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-primary">
+                  <span>{BLOG[i].tag}</span>
+                  <span className="inline-flex items-center gap-1 text-muted-foreground">
+                    <Calendar className="h-3 w-3" /> {BLOG[i].date}
+                  </span>
+                </div>
+                <h3 className="mt-3 font-display text-lg leading-snug text-secondary">
+                  {BLOG[i].title}
+                </h3>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                  Read More <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* PARTNERS MARQUEE */}
+      <section className="border-y border-gold/30 bg-cream py-12">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="text-center">
+            <p className="mb-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              <span className="h-px w-8 bg-primary" /> Our Trusted Partners
+            </p>
+            <h2 className="font-display text-2xl text-secondary md:text-3xl">
+              Families, builders and brands we have served
+            </h2>
+          </div>
+          <div className="relative mt-10 overflow-hidden">
+            <div className="flex animate-[marquee_30s_linear_infinite] gap-12 whitespace-nowrap">
+              {[...PARTNERS, ...PARTNERS].map((p, i) => (
+                <span
+                  key={i}
+                  className="font-display text-xl text-muted-foreground/70"
+                >
+                  ❖ {p}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4 pb-20 md:px-8">
-        <div className="overflow-hidden rounded-2xl bg-temple-gradient p-10 text-center text-primary-foreground shadow-xl md:p-16">
-          <h2 className="font-display text-3xl md:text-4xl">Begin your Vaastu journey today</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-primary-foreground/90">
-            Whether it's a new home, a growing business or a plot you're considering — let us
-            guide you with authentic Vaastu Shastra.
+      <section className="mx-auto max-w-7xl px-4 py-20 md:px-8">
+        <div className="overflow-hidden rounded-3xl bg-temple-gradient p-10 text-center text-primary-foreground shadow-xl md:p-16">
+          <h2 className="font-script text-4xl md:text-5xl">
+            Begin your Vaastu journey today
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
+            Whether it's a new home, a growing business, or a plot you're considering —
+            let us guide you with authentic Vaastu Shastra rooted in tradition.
           </p>
           <Link
             to="/contact"
-            className="mt-6 inline-flex items-center gap-2 rounded-md bg-secondary px-6 py-3 text-sm font-medium text-secondary-foreground hover:opacity-90"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-secondary px-7 py-3 text-sm font-semibold text-secondary-foreground hover:opacity-90"
           >
             Contact the Poojari <ArrowRight className="h-4 w-4" />
           </Link>

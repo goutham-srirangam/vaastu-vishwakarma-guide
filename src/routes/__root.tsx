@@ -58,6 +58,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Vishwakarma Telugu Vaastu" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Vishwakarma Telugu Vaastu — Authentic Vaastu Shastra Consultancy" },
+      { name: "twitter:title", content: "Vishwakarma Telugu Vaastu — Authentic Vaastu Shastra Consultancy" },
+      { property: "og:description", content: "Traditional Vaastu Shastra guidance for homes, businesses, factories, restaurants and hospitals — by Vishwakarma Telugu Vaastu." },
+      { name: "twitter:description", content: "Traditional Vaastu Shastra guidance for homes, businesses, factories, restaurants and hospitals — by Vishwakarma Telugu Vaastu." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ae999fd-630f-4ab8-aad4-f165ba352d38/id-preview-b13a2373--92f488a6-0375-4f79-990d-0ff07df094d5.lovable.app-1778638759743.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ae999fd-630f-4ab8-aad4-f165ba352d38/id-preview-b13a2373--92f488a6-0375-4f79-990d-0ff07df094d5.lovable.app-1778638759743.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -30,7 +30,7 @@ function AboutPage() {
             <SectionHeading
               eyebrow="About The Founder"
               title="Vastushastra Expert in Real Estate"
-              align="left"
+              center={false}
             />
             <h3 className="mt-2 font-display text-2xl text-secondary md:text-3xl">
               Sri <span className="text-gradient-saffron">Vishwakarma Poojari</span>
@@ -66,7 +66,7 @@ function AboutPage() {
       <section className="bg-cream/60 py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 md:px-8 lg:grid-cols-2">
           <div>
-            <SectionHeading eyebrow="Our History" title="Vastushastra: Architectural Harmony for Prosperous Living" align="left" />
+            <SectionHeading eyebrow="Our History" title="Vastushastra: Architectural Harmony for Prosperous Living" center={false} />
             <p className="mt-6 text-foreground/80">
               By incorporating a number of principles and practises into the
               conventional Hindu system of architecture known as Vastushastra, a

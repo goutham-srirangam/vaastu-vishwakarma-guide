@@ -83,7 +83,7 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-cream">
+      <section className="relative isolate overflow-hidden bg-white">
         <img
           src={topo}
           alt=""

@@ -84,14 +84,6 @@ function Index() {
     <>
       {/* HERO */}
       <section className="relative isolate overflow-hidden bg-white">
-        <img
-          src={topo}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
-          width={1920}
-          height={1280}
-        />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
           <div>
             <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Youtube, Quote, Calendar } from "lucide-react";
-import founder from "@/assets/founder.jpg";
+import founder from "@/assets/vastu-purusha.png";
 import topo from "@/assets/topo-bg.jpg";
 import about from "@/assets/about.jpg";
 import g1 from "@/assets/g1.jpg";

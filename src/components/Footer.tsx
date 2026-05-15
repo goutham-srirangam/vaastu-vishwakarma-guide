@@ -30,7 +30,9 @@ export function Footer() {
           <h4 className="font-display text-lg text-accent">Explore</h4>
           <ul className="mt-3 space-y-2 text-sm text-secondary-foreground/80">
             <li><Link to="/" className="hover:text-accent">Home</Link></li>
+            <li><Link to="/about" className="hover:text-accent">About Us</Link></li>
             <li><Link to="/gallery" className="hover:text-accent">Gallery</Link></li>
+            <li><Link to="/portfolio" className="hover:text-accent">Our Portfolio</Link></li>
             <li><Link to="/services" className="hover:text-accent">Services</Link></li>
             <li><Link to="/contact" className="hover:text-accent">Contact</Link></li>
           </ul>

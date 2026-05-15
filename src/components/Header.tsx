@@ -58,7 +58,9 @@ export function Header() {
 
           <nav className="hidden items-center gap-1 lg:flex">
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/about">About Us</NavLink>
             <NavLink to="/gallery">Gallery</NavLink>
+            <NavLink to="/portfolio">Our Portfolio</NavLink>
             <div
               className="relative"
               onMouseEnter={() => setServicesOpen(true)}
@@ -107,7 +109,9 @@ export function Header() {
           <div className="border-t border-gold/30 bg-cream lg:hidden">
             <div className="mx-auto max-w-7xl px-4 py-3">
               <MobileLink to="/" onClick={() => setOpen(false)}>Home</MobileLink>
+              <MobileLink to="/about" onClick={() => setOpen(false)}>About Us</MobileLink>
               <MobileLink to="/gallery" onClick={() => setOpen(false)}>Gallery</MobileLink>
+              <MobileLink to="/portfolio" onClick={() => setOpen(false)}>Our Portfolio</MobileLink>
               <MobileLink to="/services" onClick={() => setOpen(false)}>All Services</MobileLink>
               <div className="ml-4 border-l border-gold/40 pl-3">
                 {services.map((s) => (

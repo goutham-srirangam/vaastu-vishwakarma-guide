@@ -40,7 +40,7 @@ export function Header() {
       </div>
 
       {/* Main bar */}
-      <div className="border-b border-gold/30 bg-cream/90 backdrop-blur supports-[backdrop-filter]:bg-cream/75">
+      <div className="border-b border-gold/30 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
           <Link to="/" className="flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-full bg-temple-gradient font-display text-lg text-primary-foreground shadow-md">

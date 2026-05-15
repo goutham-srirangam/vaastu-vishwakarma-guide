@@ -39,11 +39,11 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand */
-  --saffron: oklch(0.78 0.17 55);        /* #FF9933-ish */
-  --bindi: oklch(0.42 0.16 28);          /* deep maroon */
-  --gold: oklch(0.78 0.13 85);           /* temple gold */
-  --cream: oklch(0.98 0.02 85);          /* warm cream */
+  /* Brand — matched to Vinayak Vastu Vidhya */
+  --saffron: oklch(0.72 0.17 50);        /* #F58220 vivid orange */
+  --bindi: oklch(0.48 0.15 255);         /* #1E5BB8 royal blue (headings) */
+  --gold: oklch(0.88 0.05 75);           /* soft warm divider */
+  --cream: oklch(1 0 0);                 /* white */
 
   --background: oklch(1 0 0);          /* white */
   --foreground: oklch(0.25 0.04 40);     /* ink brown */

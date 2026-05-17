@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Youtube, Quote, Calendar } from "lucide-react";
 import founder from "@/assets/vastu-purusha.png";
-import topo from "@/assets/topo-bg.jpg";
 import about from "@/assets/about.jpg";
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
@@ -10,6 +9,19 @@ import { SERVICES } from "@/data/services";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { FAQList } from "@/components/FAQList";
+import { safeFetch, imgUrl } from "@/lib/sanity";
+
+type HomeDoc = {
+  heroEyebrow?: string; heroTitle?: string; heroSubtitle?: string; heroImage?: unknown;
+  aboutEyebrow?: string; aboutTitle?: string; aboutHighlight?: string;
+  aboutBody1?: string; aboutBody2?: string; aboutImage?: unknown; aboutBadgeYears?: string;
+  servicesTitle?: string;
+  historyTitle?: string; historyBody1?: string; historyBody2?: string;
+  stats?: { _key: string; k: string; v: string }[];
+  processItems?: { _key: string; title: string; description: string }[];
+  testimonials?: { _key: string; name: string; role: string; text: string }[];
+  faqs?: { _key: string; q: string; a: string }[];
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +47,11 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: async () => {
+    const doc = await safeFetch<HomeDoc>(`*[_id == "homePage"][0]`);
+    return { home: doc };
+  },
+  staleTime: 30_000,
   component: Index,
 });
 
@@ -80,6 +97,17 @@ const BLOG = [
 const PARTNERS = ["Saanvi Builders", "Sri Krishna Estates", "Annapurna Foods", "Vasudha Realty", "Aravind Hospitals", "Padmaja Constructions", "Kamala Hotels", "Ganga Industries"];
 
 function Index() {
+  const { home } = Route.useLoaderData();
+  const h = home ?? {};
+  const stats = h.stats?.length ? h.stats : STATS.map((s, i) => ({ _key: `s${i}`, ...s }));
+  const processItems = h.processItems?.length
+    ? h.processItems
+    : PROCESS.map((p, i) => ({ _key: `p${i}`, title: p.t, description: p.d }));
+  const testimonials = h.testimonials?.length ? h.testimonials : TESTIMONIALS.map((t, i) => ({ _key: `t${i}`, ...t }));
+  const faqs = h.faqs?.length ? h.faqs : HOME_FAQS.map((f, i) => ({ _key: `f${i}`, ...f }));
+  const heroImageUrl = imgUrl(h.heroImage, founder, 1200);
+  const aboutImageUrl = imgUrl(h.aboutImage, about, 1200);
+
   return (
     <>
       {/* HERO */}
@@ -87,14 +115,13 @@ function Index() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
           <div>
             <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              <span className="h-px w-8 bg-primary" /> ॐ Vaastu Shastra
+              <span className="h-px w-8 bg-primary" /> {h.heroEyebrow ?? "ॐ Vaastu Shastra"}
             </p>
             <h1 className="font-script text-5xl leading-[1.05] text-secondary md:text-7xl">
-              Providing Harmony <br /> And Balance In Life <br /> Through Vaastushastra…
+              {h.heroTitle ?? "Providing Harmony And Balance In Life Through Vaastushastra…"}
             </h1>
             <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
-              We help families and businesses create spaces that nurture well-being,
-              prosperity and peace — guided by the timeless principles of Vaastu Shastra.
+              {h.heroSubtitle ?? "We help families and businesses create spaces that nurture well-being, prosperity and peace — guided by the timeless principles of Vaastu Shastra."}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -116,7 +143,7 @@ function Index() {
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-temple-gradient opacity-10 blur-3xl" />
             <img
-              src={founder}
+              src={heroImageUrl}
               alt="Vishwakarma Telugu Vaastu — portrait of the poojari"
               className="mx-auto h-auto w-full max-w-md object-contain md:max-w-lg"
               width={1024}
@@ -132,7 +159,7 @@ function Index() {
           <div className="relative">
             <div className="absolute -bottom-4 -left-4 z-0 hidden h-2/3 w-2/3 rounded-2xl bg-temple-gradient opacity-20 md:block" />
             <img
-              src={about}
+              src={aboutImageUrl}
               alt="Vaastu workshop and consultation"
               loading="lazy"
               width={1024}
@@ -140,29 +167,23 @@ function Index() {
               className="relative z-10 rounded-2xl object-cover shadow-xl"
             />
             <div className="absolute -right-3 top-6 z-20 hidden rounded-xl bg-primary px-5 py-3 text-primary-foreground shadow-xl md:block">
-              <div className="font-display text-2xl">20+ Years</div>
+              <div className="font-display text-2xl">{h.aboutBadgeYears ?? "20+ Years"}</div>
               <div className="text-xs uppercase tracking-widest opacity-90">Of Devotion</div>
             </div>
           </div>
           <div>
             <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              <span className="h-px w-8 bg-primary" /> About The Founder
+              <span className="h-px w-8 bg-primary" /> {h.aboutEyebrow ?? "About The Founder"}
             </p>
             <h2 className="font-display text-3xl leading-tight text-secondary md:text-4xl">
-              Vaastu Shastra Acharya — <br />
-              <span className="text-primary">Vishwakarma Telugu Vaastu</span>
+              {h.aboutTitle ?? "Vaastu Shastra Acharya —"} <br />
+              <span className="text-primary">{h.aboutHighlight ?? "Vishwakarma Telugu Vaastu"}</span>
             </h2>
-            <p className="mt-5 text-base text-muted-foreground">
-              For over two decades, our practice has been devoted to keeping authentic
-              Vaastu Shastra alive in everyday Telugu households and businesses. From
-              plot selection to griha pravesham, every recommendation is rooted in
-              classical scriptures — adapted with care for modern construction and
-              urban realities.
+            <p className="mt-5 text-base text-muted-foreground whitespace-pre-line">
+              {h.aboutBody1 ?? "For over two decades, our practice has been devoted to keeping authentic Vaastu Shastra alive in everyday Telugu households and businesses."}
             </p>
-            <p className="mt-4 text-base text-muted-foreground">
-              Our work spans Vaastu education, residential, commercial, industrial,
-              farmhouse, restaurant and hospital projects across the Telugu states
-              and beyond, helping each space become peaceful, harmonious and prosperous.
+            <p className="mt-4 text-base text-muted-foreground whitespace-pre-line">
+              {h.aboutBody2 ?? "Our work spans Vaastu education, residential, commercial, industrial, farmhouse, restaurant and hospital projects across the Telugu states and beyond."}
             </p>
             <Link
               to="/services"
@@ -181,8 +202,8 @@ function Index() {
             <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
               <span className="h-px w-8 bg-primary" /> Our Services
             </p>
-            <h2 className="font-display text-3xl text-secondary md:text-4xl">
-              Vaastu Shastra Is A Finger <br /> Pointing At Reality
+            <h2 className="font-display text-3xl text-secondary md:text-4xl whitespace-pre-line">
+              {h.servicesTitle ?? "Vaastu Shastra Is A Finger Pointing At Reality"}
             </h2>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -201,24 +222,19 @@ function Index() {
               <span className="h-px w-8 bg-accent" /> Our History
             </p>
             <h2 className="font-display text-3xl leading-tight md:text-4xl">
-              Vaastushastra: Architectural Harmony for Prosperous Living
+              {h.historyTitle ?? "Vaastushastra: Architectural Harmony for Prosperous Living"}
             </h2>
-            <p className="mt-5 text-secondary-foreground/85">
-              Vaastu Shastra is the ancient Hindu science of architecture. It blends
-              the five elements, eight directions and the cosmic order into the design
-              of a building so that the people who live and work inside it experience
-              health, wealth and peace.
+            <p className="mt-5 text-secondary-foreground/85 whitespace-pre-line">
+              {h.historyBody1 ?? "Vaastu Shastra is the ancient Hindu science of architecture."}
             </p>
-            <p className="mt-4 text-secondary-foreground/85">
-              Its origins trace back to the Atharvaveda and Sthapatya Veda, refined by
-              sages over millennia. Our work is to bring those time-tested principles
-              into the homes, offices and projects of today.
+            <p className="mt-4 text-secondary-foreground/85 whitespace-pre-line">
+              {h.historyBody2 ?? "Its origins trace back to the Atharvaveda and Sthapatya Veda."}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-5">
-            {STATS.map((s) => (
+            {stats.map((s: { _key: string; k: string; v: string }) => (
               <div
-                key={s.v}
+                key={s._key}
                 className="rounded-2xl border border-accent/30 bg-secondary-foreground/5 p-6 text-center backdrop-blur"
               >
                 <div className="font-display text-4xl text-accent md:text-5xl">{s.k}</div>
@@ -242,16 +258,16 @@ function Index() {
           </h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-4">
-          {PROCESS.map((p) => (
+          {processItems.map((p: { _key: string; title: string; description: string }, i: number) => (
             <div
-              key={p.n}
+              key={p._key}
               className="relative rounded-2xl border border-gold/40 bg-card p-7 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="absolute -top-5 left-1/2 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full bg-temple-gradient font-display text-lg text-primary-foreground shadow-lg">
-                {p.n}
+                {i + 1}
               </div>
-              <h3 className="mt-3 font-display text-xl text-secondary">{p.t}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{p.d}</p>
+              <h3 className="mt-3 font-display text-xl text-secondary">{p.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{p.description}</p>
             </div>
           ))}
         </div>
@@ -267,7 +283,7 @@ function Index() {
             description="Quick answers to the questions families and business owners ask us most often. For anything specific to your home or project, please reach out directly."
           />
           <div className="mt-10">
-            <FAQList items={HOME_FAQS} />
+            <FAQList items={faqs.map((f: { _key: string; q: string; a: string }) => ({ q: f.q, a: f.a }))} />
           </div>
         </div>
       </section>
@@ -283,9 +299,9 @@ function Index() {
           </h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
+          {testimonials.map((t: { _key: string; name: string; role: string; text: string }) => (
             <figure
-              key={t.name}
+              key={t._key}
               className="relative flex h-full flex-col rounded-2xl border border-gold/40 bg-card p-7 shadow-sm"
             >
               <Quote className="h-8 w-8 text-primary/70" />

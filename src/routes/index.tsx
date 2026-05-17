@@ -202,8 +202,8 @@ function Index() {
             <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
               <span className="h-px w-8 bg-primary" /> Our Services
             </p>
-            <h2 className="font-display text-3xl text-secondary md:text-4xl">
-              Vaastu Shastra Is A Finger <br /> Pointing At Reality
+            <h2 className="font-display text-3xl text-secondary md:text-4xl whitespace-pre-line">
+              {h.servicesTitle ?? "Vaastu Shastra Is A Finger Pointing At Reality"}
             </h2>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

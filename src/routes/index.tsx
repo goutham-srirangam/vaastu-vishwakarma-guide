@@ -97,6 +97,17 @@ const BLOG = [
 const PARTNERS = ["Saanvi Builders", "Sri Krishna Estates", "Annapurna Foods", "Vasudha Realty", "Aravind Hospitals", "Padmaja Constructions", "Kamala Hotels", "Ganga Industries"];
 
 function Index() {
+  const { home } = Route.useLoaderData();
+  const h = home ?? {};
+  const stats = h.stats?.length ? h.stats : STATS.map((s, i) => ({ _key: `s${i}`, ...s }));
+  const processItems = h.processItems?.length
+    ? h.processItems
+    : PROCESS.map((p, i) => ({ _key: `p${i}`, title: p.t, description: p.d }));
+  const testimonials = h.testimonials?.length ? h.testimonials : TESTIMONIALS.map((t, i) => ({ _key: `t${i}`, ...t }));
+  const faqs = h.faqs?.length ? h.faqs : HOME_FAQS.map((f, i) => ({ _key: `f${i}`, ...f }));
+  const heroImageUrl = imgUrl(h.heroImage, founder, 1200);
+  const aboutImageUrl = imgUrl(h.aboutImage, about, 1200);
+
   return (
     <>
       {/* HERO */}
@@ -104,14 +115,13 @@ function Index() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
           <div>
             <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              <span className="h-px w-8 bg-primary" /> ॐ Vaastu Shastra
+              <span className="h-px w-8 bg-primary" /> {h.heroEyebrow ?? "ॐ Vaastu Shastra"}
             </p>
             <h1 className="font-script text-5xl leading-[1.05] text-secondary md:text-7xl">
-              Providing Harmony <br /> And Balance In Life <br /> Through Vaastushastra…
+              {h.heroTitle ?? "Providing Harmony And Balance In Life Through Vaastushastra…"}
             </h1>
             <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
-              We help families and businesses create spaces that nurture well-being,
-              prosperity and peace — guided by the timeless principles of Vaastu Shastra.
+              {h.heroSubtitle ?? "We help families and businesses create spaces that nurture well-being, prosperity and peace — guided by the timeless principles of Vaastu Shastra."}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -133,7 +143,7 @@ function Index() {
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-temple-gradient opacity-10 blur-3xl" />
             <img
-              src={founder}
+              src={heroImageUrl}
               alt="Vishwakarma Telugu Vaastu — portrait of the poojari"
               className="mx-auto h-auto w-full max-w-md object-contain md:max-w-lg"
               width={1024}
@@ -149,7 +159,7 @@ function Index() {
           <div className="relative">
             <div className="absolute -bottom-4 -left-4 z-0 hidden h-2/3 w-2/3 rounded-2xl bg-temple-gradient opacity-20 md:block" />
             <img
-              src={about}
+              src={aboutImageUrl}
               alt="Vaastu workshop and consultation"
               loading="lazy"
               width={1024}
@@ -157,29 +167,23 @@ function Index() {
               className="relative z-10 rounded-2xl object-cover shadow-xl"
             />
             <div className="absolute -right-3 top-6 z-20 hidden rounded-xl bg-primary px-5 py-3 text-primary-foreground shadow-xl md:block">
-              <div className="font-display text-2xl">20+ Years</div>
+              <div className="font-display text-2xl">{h.aboutBadgeYears ?? "20+ Years"}</div>
               <div className="text-xs uppercase tracking-widest opacity-90">Of Devotion</div>
             </div>
           </div>
           <div>
             <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              <span className="h-px w-8 bg-primary" /> About The Founder
+              <span className="h-px w-8 bg-primary" /> {h.aboutEyebrow ?? "About The Founder"}
             </p>
             <h2 className="font-display text-3xl leading-tight text-secondary md:text-4xl">
-              Vaastu Shastra Acharya — <br />
-              <span className="text-primary">Vishwakarma Telugu Vaastu</span>
+              {h.aboutTitle ?? "Vaastu Shastra Acharya —"} <br />
+              <span className="text-primary">{h.aboutHighlight ?? "Vishwakarma Telugu Vaastu"}</span>
             </h2>
-            <p className="mt-5 text-base text-muted-foreground">
-              For over two decades, our practice has been devoted to keeping authentic
-              Vaastu Shastra alive in everyday Telugu households and businesses. From
-              plot selection to griha pravesham, every recommendation is rooted in
-              classical scriptures — adapted with care for modern construction and
-              urban realities.
+            <p className="mt-5 text-base text-muted-foreground whitespace-pre-line">
+              {h.aboutBody1 ?? "For over two decades, our practice has been devoted to keeping authentic Vaastu Shastra alive in everyday Telugu households and businesses."}
             </p>
-            <p className="mt-4 text-base text-muted-foreground">
-              Our work spans Vaastu education, residential, commercial, industrial,
-              farmhouse, restaurant and hospital projects across the Telugu states
-              and beyond, helping each space become peaceful, harmonious and prosperous.
+            <p className="mt-4 text-base text-muted-foreground whitespace-pre-line">
+              {h.aboutBody2 ?? "Our work spans Vaastu education, residential, commercial, industrial, farmhouse, restaurant and hospital projects across the Telugu states and beyond."}
             </p>
             <Link
               to="/services"

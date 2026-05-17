@@ -5,11 +5,11 @@ import about from "@/assets/about.jpg";
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";
-import { SERVICES } from "@/data/services";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { FAQList } from "@/components/FAQList";
 import { safeFetch, imgUrl } from "@/lib/sanity";
+import { fetchServiceCards, type ServiceCardData } from "@/lib/services-cms";
 
 type HomeDoc = {
   heroEyebrow?: string; heroTitle?: string; heroSubtitle?: string; heroImage?: unknown;
@@ -48,8 +48,11 @@ export const Route = createFileRoute("/")({
     ],
   }),
   loader: async () => {
-    const doc = await safeFetch<HomeDoc>(`*[_id == "homePage"][0]`);
-    return { home: doc };
+    const [doc, services] = await Promise.all([
+      safeFetch<HomeDoc>(`*[_id == "homePage"][0]`),
+      fetchServiceCards(),
+    ]);
+    return { home: doc, services };
   },
   staleTime: 30_000,
   component: Index,
@@ -97,7 +100,7 @@ const BLOG = [
 const PARTNERS = ["Saanvi Builders", "Sri Krishna Estates", "Annapurna Foods", "Vasudha Realty", "Aravind Hospitals", "Padmaja Constructions", "Kamala Hotels", "Ganga Industries"];
 
 function Index() {
-  const { home } = Route.useLoaderData();
+  const { home, services } = Route.useLoaderData();
   const h = home ?? {};
   const stats = h.stats?.length ? h.stats : STATS.map((s, i) => ({ _key: `s${i}`, ...s }));
   const processItems = h.processItems?.length
@@ -207,7 +210,7 @@ function Index() {
             </h2>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s) => (
+            {services.map((s: ServiceCardData) => (
               <ServiceCard key={s.slug} s={{ to: s.to, title: s.title, blurb: s.blurb, image: s.image }} />
             ))}
           </div>

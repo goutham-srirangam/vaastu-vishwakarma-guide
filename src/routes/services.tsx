@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SERVICES } from "@/data/services";
 import { ServiceCard } from "@/components/ServiceCard";
 import { SectionHeading } from "@/components/SectionHeading";
+import { fetchServiceCards, type ServiceCardData } from "@/lib/services-cms";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -14,10 +14,13 @@ export const Route = createFileRoute("/services")({
     ],
     links: [{ rel: "canonical", href: "/services" }],
   }),
+  loader: async () => ({ services: await fetchServiceCards() }),
+  staleTime: 30_000,
   component: ServicesIndex,
 });
 
 function ServicesIndex() {
+  const { services } = Route.useLoaderData();
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
       <SectionHeading
@@ -26,7 +29,7 @@ function ServicesIndex() {
         description="Each space — a home, an office, a hospital — has its own energy. Choose the service that fits your project."
       />
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.map((s) => (
+        {services.map((s: ServiceCardData) => (
           <ServiceCard key={s.slug} s={{ to: s.to, title: s.title, blurb: s.blurb, image: s.image }} />
         ))}
       </div>

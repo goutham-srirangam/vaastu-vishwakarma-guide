@@ -41,7 +41,7 @@ export const Route = createFileRoute("/portfolio")({
 function PortfolioPage() {
   const { items } = Route.useLoaderData();
   const projects = items && items.length
-    ? items.map((p) => ({
+    ? items.map((p: ProjectDoc) => ({
         _id: p._id,
         category: p.category ?? "Project",
         title: p.title ?? "Untitled",

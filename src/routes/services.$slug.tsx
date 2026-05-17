@@ -1,15 +1,47 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
-import { SERVICE_BY_SLUG } from "@/data/services";
+import { SERVICE_BY_SLUG, type ServiceData } from "@/data/services";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FAQList } from "@/components/FAQList";
+import { safeFetch, imgUrl } from "@/lib/sanity";
+
+type SanityService = {
+  title?: string;
+  short?: string;
+  blurb?: string;
+  intro?: string;
+  intro2?: string;
+  offerHeading?: string;
+  covers?: string[];
+  image?: unknown;
+  process?: { _key?: string; title: string; text: string }[];
+  faqs?: { _key?: string; q: string; a: string }[];
+};
 
 export const Route = createFileRoute("/services/$slug")({
-  loader: ({ params }) => {
-    const service = SERVICE_BY_SLUG[params.slug];
-    if (!service) throw notFound();
+  loader: async ({ params }) => {
+    const base = SERVICE_BY_SLUG[params.slug];
+    if (!base) throw notFound();
+    const cms = await safeFetch<SanityService>(
+      `*[_type == "service" && slug.current == $slug][0]`,
+      { slug: params.slug },
+    );
+    const service: ServiceData = {
+      ...base,
+      title: cms?.title ?? base.title,
+      short: cms?.short ?? base.short,
+      blurb: cms?.blurb ?? base.blurb,
+      intro: cms?.intro ?? base.intro,
+      intro2: cms?.intro2 ?? base.intro2,
+      offerHeading: cms?.offerHeading ?? base.offerHeading,
+      covers: cms?.covers?.length ? cms.covers : base.covers,
+      image: imgUrl(cms?.image, base.image, 1600),
+      process: cms?.process?.length ? cms.process.map((p) => ({ title: p.title, text: p.text })) : base.process,
+      faqs: cms?.faqs?.length ? cms.faqs.map((f) => ({ q: f.q, a: f.a })) : base.faqs,
+    };
     return { service };
   },
+  staleTime: 30_000,
   head: ({ loaderData }) => {
     const s = loaderData?.service;
     if (!s) return {};

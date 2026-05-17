@@ -222,24 +222,19 @@ function Index() {
               <span className="h-px w-8 bg-accent" /> Our History
             </p>
             <h2 className="font-display text-3xl leading-tight md:text-4xl">
-              Vaastushastra: Architectural Harmony for Prosperous Living
+              {h.historyTitle ?? "Vaastushastra: Architectural Harmony for Prosperous Living"}
             </h2>
-            <p className="mt-5 text-secondary-foreground/85">
-              Vaastu Shastra is the ancient Hindu science of architecture. It blends
-              the five elements, eight directions and the cosmic order into the design
-              of a building so that the people who live and work inside it experience
-              health, wealth and peace.
+            <p className="mt-5 text-secondary-foreground/85 whitespace-pre-line">
+              {h.historyBody1 ?? "Vaastu Shastra is the ancient Hindu science of architecture."}
             </p>
-            <p className="mt-4 text-secondary-foreground/85">
-              Its origins trace back to the Atharvaveda and Sthapatya Veda, refined by
-              sages over millennia. Our work is to bring those time-tested principles
-              into the homes, offices and projects of today.
+            <p className="mt-4 text-secondary-foreground/85 whitespace-pre-line">
+              {h.historyBody2 ?? "Its origins trace back to the Atharvaveda and Sthapatya Veda."}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-5">
-            {STATS.map((s) => (
+            {stats.map((s) => (
               <div
-                key={s.v}
+                key={s._key}
                 className="rounded-2xl border border-accent/30 bg-secondary-foreground/5 p-6 text-center backdrop-blur"
               >
                 <div className="font-display text-4xl text-accent md:text-5xl">{s.k}</div>

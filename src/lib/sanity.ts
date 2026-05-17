@@ -1,4 +1,5 @@
-import { createClient, type SanityImageSource } from "@sanity/client";
+import { createClient } from "@sanity/client";
+type SanityImageSource = Parameters<ReturnType<typeof imageUrlBuilder>["image"]>[0];
 import imageUrlBuilder from "@sanity/image-url";
 
 export const sanityClient = createClient({

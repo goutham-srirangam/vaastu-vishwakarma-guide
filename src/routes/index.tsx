@@ -258,16 +258,16 @@ function Index() {
           </h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-4">
-          {PROCESS.map((p) => (
+          {processItems.map((p: { _key: string; title: string; description: string }, i: number) => (
             <div
-              key={p.n}
+              key={p._key}
               className="relative rounded-2xl border border-gold/40 bg-card p-7 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="absolute -top-5 left-1/2 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full bg-temple-gradient font-display text-lg text-primary-foreground shadow-lg">
-                {p.n}
+                {i + 1}
               </div>
-              <h3 className="mt-3 font-display text-xl text-secondary">{p.t}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{p.d}</p>
+              <h3 className="mt-3 font-display text-xl text-secondary">{p.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{p.description}</p>
             </div>
           ))}
         </div>
@@ -283,7 +283,7 @@ function Index() {
             description="Quick answers to the questions families and business owners ask us most often. For anything specific to your home or project, please reach out directly."
           />
           <div className="mt-10">
-            <FAQList items={HOME_FAQS} />
+            <FAQList items={faqs.map((f: { _key: string; q: string; a: string }) => ({ q: f.q, a: f.a }))} />
           </div>
         </div>
       </section>
@@ -299,9 +299,9 @@ function Index() {
           </h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
+          {testimonials.map((t: { _key: string; name: string; role: string; text: string }) => (
             <figure
-              key={t.name}
+              key={t._key}
               className="relative flex h-full flex-col rounded-2xl border border-gold/40 bg-card p-7 shadow-sm"
             >
               <Quote className="h-8 w-8 text-primary/70" />

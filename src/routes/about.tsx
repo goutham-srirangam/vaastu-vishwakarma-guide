@@ -110,7 +110,7 @@ function AboutPage() {
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
         <SectionHeading eyebrow="Our Philosophy" title="Tradition. Science. Practical wisdom." />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {values.map((c) => (
+          {values.map((c: { _key: string; title: string; description: string }) => (
             <div key={c._key} className="rounded-2xl border border-gold/30 bg-card p-6 shadow-sm">
               <h4 className="font-display text-xl text-secondary">{c.title}</h4>
               <p className="mt-3 text-sm text-foreground/75 whitespace-pre-line">{c.description}</p>

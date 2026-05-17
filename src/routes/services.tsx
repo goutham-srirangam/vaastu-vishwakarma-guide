@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServiceCard } from "@/components/ServiceCard";
 import { SectionHeading } from "@/components/SectionHeading";
-import { fetchServiceCards } from "@/lib/services-cms";
+import { fetchServiceCards, type ServiceCardData } from "@/lib/services-cms";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -29,7 +29,7 @@ function ServicesIndex() {
         description="Each space — a home, an office, a hospital — has its own energy. Choose the service that fits your project."
       />
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((s) => (
+        {services.map((s: ServiceCardData) => (
           <ServiceCard key={s.slug} s={{ to: s.to, title: s.title, blurb: s.blurb, image: s.image }} />
         ))}
       </div>

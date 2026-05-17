@@ -59,7 +59,7 @@ function PortfolioPage() {
       />
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
+        {projects.map((p: { _id: string; category: string; title: string; desc: string; img: string }) => (
           <article key={p._id} className="group overflow-hidden rounded-2xl border border-gold/30 bg-card shadow-sm transition hover:shadow-xl">
             <div className="relative aspect-[4/3] overflow-hidden">
               <img src={p.img} alt={p.title} loading="lazy" width={1024} height={768} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />

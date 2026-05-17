@@ -9,6 +9,9 @@ import g6 from "@/assets/g6.jpg";
 import residential from "@/assets/residential.jpg";
 import farmhouse from "@/assets/farmhouse.jpg";
 import restaurant from "@/assets/restaurant.jpg";
+import { safeFetch, imgUrl } from "@/lib/sanity";
+
+type GalleryDoc = { _id: string; label?: string; image?: unknown };
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -21,10 +24,15 @@ export const Route = createFileRoute("/gallery")({
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
   }),
+  loader: async () => {
+    const items = await safeFetch<GalleryDoc[]>(`*[_type == "galleryImage"] | order(order asc, _createdAt asc)`);
+    return { items };
+  },
+  staleTime: 30_000,
   component: Gallery,
 });
 
-const ITEMS = [
+const FALLBACK = [
   { src: g1, label: "Pooja room blessings" },
   { src: g4, label: "Vaastu Shanti pooja" },
   { src: residential, label: "Residential project" },
@@ -37,6 +45,11 @@ const ITEMS = [
 ];
 
 function Gallery() {
+  const { items } = Route.useLoaderData();
+  const figures = items && items.length
+    ? items.map((it: GalleryDoc) => ({ src: imgUrl(it.image, g1, 1024), label: it.label ?? "" }))
+    : FALLBACK;
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
       <SectionHeading
@@ -45,7 +58,7 @@ function Gallery() {
         description="A glimpse into the rituals, projects and craft that define our Vaastu practice."
       />
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {ITEMS.map((it, i) => (
+        {figures.map((it: { src: string; label: string }, i: number) => (
           <figure
             key={i}
             className="group relative overflow-hidden rounded-xl border border-gold/30 bg-card shadow-sm"

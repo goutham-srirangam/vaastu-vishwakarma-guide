@@ -9,6 +9,9 @@ import g6 from "@/assets/g6.jpg";
 import residential from "@/assets/residential.jpg";
 import farmhouse from "@/assets/farmhouse.jpg";
 import restaurant from "@/assets/restaurant.jpg";
+import { safeFetch, imgUrl } from "@/lib/sanity";
+
+type GalleryDoc = { _id: string; label?: string; image?: unknown };
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({

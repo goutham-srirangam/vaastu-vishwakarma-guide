@@ -25,7 +25,7 @@ export const Route = createFileRoute("/gallery")({
     links: [{ rel: "canonical", href: "/gallery" }],
   }),
   loader: async () => {
-    const items = await safeFetch<GalleryDoc[]>(`*[_type == "galleryImage"] | order(order asc, _createdAt asc)`);
+    const items = await safeFetch<GalleryDoc[]>(`*[_type == "galleryItem"] | order(order asc, _createdAt asc)`);
     return { items };
   },
   staleTime: 30_000,

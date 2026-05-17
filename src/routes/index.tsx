@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Youtube, Quote, Calendar } from "lucide-react";
 import founder from "@/assets/vastu-purusha.png";
-import topo from "@/assets/topo-bg.jpg";
 import about from "@/assets/about.jpg";
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
@@ -10,6 +9,19 @@ import { SERVICES } from "@/data/services";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { FAQList } from "@/components/FAQList";
+import { safeFetch, imgUrl } from "@/lib/sanity";
+
+type HomeDoc = {
+  heroEyebrow?: string; heroTitle?: string; heroSubtitle?: string; heroImage?: unknown;
+  aboutEyebrow?: string; aboutTitle?: string; aboutHighlight?: string;
+  aboutBody1?: string; aboutBody2?: string; aboutImage?: unknown; aboutBadgeYears?: string;
+  servicesTitle?: string;
+  historyTitle?: string; historyBody1?: string; historyBody2?: string;
+  stats?: { _key: string; k: string; v: string }[];
+  processItems?: { _key: string; title: string; description: string }[];
+  testimonials?: { _key: string; name: string; role: string; text: string }[];
+  faqs?: { _key: string; q: string; a: string }[];
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +47,11 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: async () => {
+    const doc = await safeFetch<HomeDoc>(`*[_id == "homePage"][0]`);
+    return { home: doc };
+  },
+  staleTime: 30_000,
   component: Index,
 });
 

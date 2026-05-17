@@ -232,7 +232,7 @@ function Index() {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-5">
-            {stats.map((s) => (
+            {stats.map((s: { _key: string; k: string; v: string }) => (
               <div
                 key={s._key}
                 className="rounded-2xl border border-accent/30 bg-secondary-foreground/5 p-6 text-center backdrop-blur"

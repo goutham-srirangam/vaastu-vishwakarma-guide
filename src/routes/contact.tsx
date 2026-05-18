@@ -17,9 +17,9 @@ export const Route = createFileRoute("/contact")({
 });
 
 const CARDS = [
-  { icon: Phone, title: "Phone", value: "+91 — XXXXX XXXXX", note: "Mon–Sat, 9am – 7pm" },
-  { icon: MessageCircle, title: "WhatsApp", value: "+91 — XXXXX XXXXX", note: "Quick replies" },
-  { icon: Mail, title: "Email", value: "contact@example.com", note: "We respond within 24 hours" },
+  { icon: Phone, title: "Phone", value: "+91 73309 61291", note: "Mon–Sat, 9am – 7pm" },
+  { icon: MessageCircle, title: "WhatsApp", value: "+91 73309 61291", note: "Quick replies" },
+  { icon: Mail, title: "Email", value: "vishvakarmavastu12@gmail.com", note: "We respond within 24 hours" },
   { icon: MapPin, title: "Service Area", value: "Andhra Pradesh & Telangana", note: "On-site and remote consultations" },
 ];
 

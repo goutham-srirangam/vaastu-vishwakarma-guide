@@ -41,8 +41,8 @@ export function Footer() {
         <div>
           <h4 className="font-display text-lg text-accent">Reach Us</h4>
           <ul className="mt-3 space-y-3 text-sm text-secondary-foreground/80">
-            <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4" /> +91 — XXXXX XXXXX</li>
-            <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4" /> contact@example.com</li>
+            <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4" /> <a href="tel:+917330961291" className="hover:text-accent">+91 73309 61291</a></li>
+            <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4" /> <a href="mailto:vishvakarmavastu12@gmail.com" className="hover:text-accent break-all">vishvakarmavastu12@gmail.com</a></li>
             <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4" /> Andhra Pradesh / Telangana, India</li>
           </ul>
         </div>
